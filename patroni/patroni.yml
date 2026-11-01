@@ -1,0 +1,31 @@
+[sudo] password for masteruser: 
+scope: postgres_cluster
+log:
+  level: DEBUG
+namespace: /db/
+name: nodeip55
+
+restapi:
+  listen: 192.168.1.55:8008
+  connect_address: 192.168.1.55:8008
+
+etcd3:
+  hosts:
+    - 192.168.1.55:2379
+    - 192.168.1.56:2379
+    - 192.168.1.57:2379
+postgresql:
+  listen: 192.168.1.55:5432
+  connect_address: 192.168.1.55:5432
+  data_dir: /var/lib/postgresql/17/main
+  config_dir: /etc/postgresql/17/main
+  bin_dir: /usr/lib/postgresql/17/bin
+  authentication:
+    replication:
+      username: YOUR_NAME
+      password: YOUR_PASSWORD
+    superuser:
+      username: YOUR_NAME
+      password: YOUR_PASSWORD
+  parameters:
+    unix_socket_directories: '/var/run/postgresql'
