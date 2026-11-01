@@ -25,15 +25,3 @@ Database & Consensus Layer (Patroni + etcd):
 
 An underlying 3-node etcd distributed consensus store acts as the Distributed Configuration Store (DCS) for cluster state tracking and leader leasing.
 
-
-postgres-ha-lab/
-├── README.md                 # Architecture documentation & test runbooks
-├── patroni/
-│   └── patroni.yml           # Sanitized Patroni node configuration template
-├── etcd/
-│   └── etcd.yml              # Sanitized etcd cluster consensus config
-├── load-balancer/
-│   ├── haproxy.cfg           # HAProxy routing rules (ports 15432 / 15433)
-│   └── keepalived.conf       # Keepalived VRRP and Floating VIP configuration
-└── docs/
-    └── failure-tests.md      # Detailed notes on crash simulation and timeline recovery
