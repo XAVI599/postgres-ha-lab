@@ -1,0 +1,27 @@
+[Unit]
+Description=etcd key-value store
+Documentation=https://etcd.io/docs/
+After=network.target
+StartLimitIntervalSec=60s
+StartLimitBurst=3
+
+[Service]
+Type=notify
+User=root
+ExecStart=/usr/local/bin/etcd \
+  --name node1 \
+  --listen-peer-urls http://192.168.1.55:2380 \
+  --listen-client-urls http://192.168.1.55:2379,http://127.0.0.1:2379 \
+  --initial-advertise-peer-urls http://192.168.1.55:2380 \
+  --advertise-client-urls http://192.168.1.55:2379 \
+  --initial-cluster node1=http://192.168.1.55:2380,node2=http://192.168.1.56:2380,node3=http://192.168.1.57:2380 \
+  --initial-cluster-token etcd-cluster-1 \
+  --initial-cluster-state new \
+  --data-dir /var/lib/etcd
+
+Restart=on-failure
+RestartSec=5s
+LimitNOFILE=40000
+
+[Install]
+WantedBy=multi-user.target
